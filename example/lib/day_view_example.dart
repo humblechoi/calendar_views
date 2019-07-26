@@ -48,12 +48,17 @@ class DayViewExample extends StatefulWidget {
 class _DayViewExampleState extends State<DayViewExample> {
   DateTime _day0;
   DateTime _day1;
+  DateTime _day2;
+  DateTime _day3;
+  DateTime _day4;
+  DateTime _day5;
+  DateTime _day6;
 
   @override
   void initState() {
     super.initState();
 
-    _day0 = new DateTime.now();
+    _day0 = new DateTime(2019, 9, 2);
     _day1 = _day0.toUtc().add(new Duration(days: 1)).toLocal();
   }
 
@@ -76,15 +81,15 @@ class _DayViewExampleState extends State<DayViewExample> {
     return events
         .map(
           (event) => new StartDurationItem(
-                startMinuteOfDay: event.startMinuteOfDay,
-                duration: event.duration,
-                builder: (context, itemPosition, itemSize) => _eventBuilder(
-                      context,
-                      itemPosition,
-                      itemSize,
-                      event,
-                    ),
-              ),
+            startMinuteOfDay: event.startMinuteOfDay,
+            duration: event.duration,
+            builder: (context, itemPosition, itemSize) => _eventBuilder(
+              context,
+              itemPosition,
+              itemSize,
+              event,
+            ),
+          ),
         )
         .toList();
   }
@@ -145,11 +150,27 @@ class _DayViewExampleState extends State<DayViewExample> {
       padding: new EdgeInsets.symmetric(vertical: 4.0),
       child: new Column(
         children: <Widget>[
-          new Text(
-            "${weekdayToAbbreviatedString(day.weekday)}",
-            style: new TextStyle(fontWeight: FontWeight.bold),
-          ),
-          new Text("${day.day}"),
+          weekdayToAbbreviatedString(day.weekday) == 'Sat'
+              ? new Text("토요일")
+              : Container(),
+          weekdayToAbbreviatedString(day.weekday) == 'Sat'
+              ? new Text("토요일")
+              : Container(),
+          weekdayToAbbreviatedString(day.weekday) == 'Sat'
+              ? new Text("토요일")
+              : Container(),
+          weekdayToAbbreviatedString(day.weekday) == 'Sat'
+              ? new Text("토요일")
+              : Container(),
+          weekdayToAbbreviatedString(day.weekday) == 'Sun'
+              ? new Text("일요일")
+              : Container(),
+
+//
+//            "${weekdayToAbbreviatedString(day.weekday)}",
+//            style: new TextStyle(fontWeight: FontWeight.bold),
+          //),
+          // new Text("${day.day}"),
         ],
       ),
     );
