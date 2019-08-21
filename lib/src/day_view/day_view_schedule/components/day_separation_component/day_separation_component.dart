@@ -1,7 +1,6 @@
+import 'package:calendar_views/day_view.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
-import 'package:calendar_views/day_view.dart';
 
 /// Signature for a function that builds a generated day separator.
 typedef Positioned GeneratedDaySeparatorBuilder(
@@ -44,7 +43,7 @@ class DaySeparationComponent implements ScheduleComponent {
 
     return new ItemPosition(
       top: top,
-      left: positioner.daySeparationAreaLeft(daySeparatorNumber),
+      left: positioner.daySeparationAreaLeft(daySeparatorNumber) - 65,
     );
   }
 
@@ -75,7 +74,7 @@ class DaySeparationComponent implements ScheduleComponent {
     List<Positioned> items = <Positioned>[];
 
     for (int daySeparatorNumber = 0;
-        daySeparatorNumber < properties.numberOfDaySeparations;
+        daySeparatorNumber < properties.numberOfDaySeparations + 1;
         daySeparatorNumber++) {
       ItemPosition itemPosition = _makeItemPosition(
         positioner: positioner,

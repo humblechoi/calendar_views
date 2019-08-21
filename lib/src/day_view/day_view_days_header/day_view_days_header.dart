@@ -72,10 +72,9 @@ This widget must be a decendant of DayViewEssentials.
   }
 
   Widget _buildStartingOffset() {
-    double width = _horizontalPositioner.eventAreaLeft;
+    double width = _horizontalPositioner.eventAreaLeft - 1;
 
     return new Container(
-      color: Color.fromRGBO(166, 212, 229, 1),
       width: width,
     );
   }
@@ -84,6 +83,13 @@ This widget must be a decendant of DayViewEssentials.
     List<Widget> daysAndSeparations = <Widget>[];
 
     List<DateTime> days = _dayViewProperties.days;
+
+    daysAndSeparations.add(
+      _buildDaySeparation(
+        daySeparationNumber: 1,
+      ),
+    );
+
     for (int dayNumber = 0; dayNumber < days.length; dayNumber++) {
       DateTime day = days[dayNumber];
 
@@ -123,7 +129,7 @@ This widget must be a decendant of DayViewEssentials.
     @required int daySeparationNumber,
   }) {
     return new Container(
-      color: Colors.white,
+      color: Colors.black,
       width: _horizontalPositioner.daySeparationAreaWidth(daySeparationNumber),
     );
   }

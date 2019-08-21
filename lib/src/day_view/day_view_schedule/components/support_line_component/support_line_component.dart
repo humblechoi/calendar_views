@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-
 import 'package:calendar_views/day_view.dart';
 import 'package:calendar_views/src/_internal_date_time/all.dart';
+import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 /// Signature for a function that builds a generated support line.
 typedef Positioned GeneratedSupportLineBuilder(
@@ -45,7 +44,7 @@ class SupportLineComponent implements ScheduleComponent {
     bool extendOverStartMainArea = true,
     bool extendOverEndMainArea = true,
     int minuteOfDayOfFirstSupportLine = 0,
-    int interval = 60,
+    int interval = 30,
     @required GeneratedSupportLineBuilder generatedSupportLineBuilder,
   }) {
     assert(minuteOfDayOfFirstSupportLine != null &&
@@ -97,14 +96,14 @@ class SupportLineComponent implements ScheduleComponent {
 
     return new ItemPosition(
       top: positioner.minuteOfDayFromTop(minuteOfDay),
-      left: left,
+      left: left - 50,
     );
   }
 
   double _calculateItemWidth({
     @required SchedulePositioner positioner,
   }) {
-    double width = positioner.mainAreaWidth;
+    double width = positioner.contentAreaWidth;
     if (!extendOverStartMainArea) {
       width -= positioner.startMainAreaWidth;
     }

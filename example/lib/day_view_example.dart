@@ -20,8 +20,6 @@ class Event {
 
 List<Event> eventsOfDay0 = <Event>[
   new Event(startMinuteOfDay: 0, duration: 60, title: "Midnight Party"),
-  new Event(
-      startMinuteOfDay: 6 * 60, duration: 2 * 60, title: "Morning Routine"),
   new Event(startMinuteOfDay: 6 * 60, duration: 60, title: "Eat Breakfast"),
   new Event(startMinuteOfDay: 7 * 60, duration: 60, title: "Get Dressed"),
   new Event(
@@ -118,7 +116,6 @@ class _DayViewExampleState extends State<DayViewExample> {
         child: new Column(
           children: <Widget>[
             new Container(
-              color: Colors.grey[200],
               child: new DayViewDaysHeader(
                 headerItemBuilder: _headerItemBuilder,
               ),
@@ -155,7 +152,7 @@ class _DayViewExampleState extends State<DayViewExample> {
   ///요일을 나타내는 부분
   Widget _headerItemBuilder(BuildContext context, DateTime day) {
     return new Container(
-      color: Color.fromRGBO(166, 212, 229, 1),
+      color: Colors.white,
       padding: new EdgeInsets.symmetric(vertical: 4.0),
       child: Center(child: new Text(weekdayToAbbreviatedString(day.weekday))),
     );
@@ -174,13 +171,15 @@ class _DayViewExampleState extends State<DayViewExample> {
       width: itemSize.width,
       height: itemSize.height,
       child: new Container(
+        padding: EdgeInsets.only(left: 3),
+        alignment: Alignment.centerLeft,
         height: itemSize.height / 2,
         child: new Text(_minuteOfDayToHourMinuteString(minuteOfDay)),
       ),
     );
   }
 
-  ///시간표 빨간색 라인
+  ///시간표 가로 라인
   Positioned _generatedSupportLineBuilder(
     BuildContext context,
     ItemPosition itemPosition,
@@ -193,12 +192,12 @@ class _DayViewExampleState extends State<DayViewExample> {
       width: itemWidth,
       child: new Container(
         height: 1.5,
-        color: Color(0xffEEEEEE),
+        color: Colors.black,
       ),
     );
   }
 
-  ///시간표 파란색 라인
+  ///시간표 세로 라인
   Positioned _generatedDaySeparatorBuilder(
     BuildContext context,
     ItemPosition itemPosition,
@@ -209,11 +208,11 @@ class _DayViewExampleState extends State<DayViewExample> {
       top: itemPosition.top - paddingTop,
       left: itemPosition.left,
       width: itemSize.width,
-      height: itemSize.height,
+      height: itemSize.height + paddingTop * 2,
       child: new Center(
         child: new Container(
           width: 1.5,
-          color: Color(0xffEEEEEE),
+          color: Colors.black,
         ),
       ),
     );

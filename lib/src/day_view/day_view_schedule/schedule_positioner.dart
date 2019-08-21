@@ -32,9 +32,7 @@ class SchedulePositioner extends HorizontalPositioner {
 
   /// Height a [DayViewSchedule] should have.
   double get totalHeight =>
-      topExtensionHeight +
-      heightOfDuration(properties.totalNumberOfMinutes) +
-      30;
+      topExtensionHeight + heightOfDuration(properties.totalNumberOfMinutes);
 
   /// Height that some item with the given [duration] should have inside a [DayViewSchedule].
   ///

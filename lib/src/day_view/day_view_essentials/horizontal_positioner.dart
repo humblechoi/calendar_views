@@ -381,7 +381,7 @@ class HorizontalPositioner {
       throw new ArgumentError("There are no day separations (only one day)");
     } else {
       if (daySeparationNumber < 0 ||
-          daySeparationNumber >= properties.numberOfDaySeparations) {
+          daySeparationNumber >= properties.numberOfDaySeparations + 1) {
         throw new ArgumentError.value(
           daySeparationNumber,
           "daySeparationNumber",
