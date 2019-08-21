@@ -60,6 +60,7 @@ This widget must be a decendant of DayViewEssentials.
 
     return new Container(
       width: _horizontalPositioner.totalWidth,
+      height: 40,
       child: new IntrinsicHeight(
         child: new Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -73,6 +74,7 @@ This widget must be a decendant of DayViewEssentials.
     double width = _horizontalPositioner.eventAreaLeft;
 
     return new Container(
+      color: Color.fromRGBO(166, 212, 229, 1),
       width: width,
     );
   }
@@ -120,12 +122,14 @@ This widget must be a decendant of DayViewEssentials.
     @required int daySeparationNumber,
   }) {
     return new Container(
+      color: Colors.white,
       width: _horizontalPositioner.daySeparationAreaWidth(daySeparationNumber),
     );
   }
 
   Widget _buildEndingOffset() {
     return new Container(
+      color: Colors.white,
       width: _endingOffsetWidth,
     );
   }

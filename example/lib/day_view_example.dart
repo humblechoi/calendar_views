@@ -46,20 +46,25 @@ class DayViewExample extends StatefulWidget {
 }
 
 class _DayViewExampleState extends State<DayViewExample> {
-  DateTime _day0;
-  DateTime _day1;
-  DateTime _day2;
-  DateTime _day3;
-  DateTime _day4;
-  DateTime _day5;
-  DateTime _day6;
+  DateTime poopooBirthday;
+  DateTime tuesday;
+  DateTime wednesday;
+  DateTime thursday;
+  DateTime friday;
 
   @override
   void initState() {
     super.initState();
 
-    _day0 = new DateTime(2019, 9, 2);
-    _day1 = _day0.toUtc().add(new Duration(days: 1)).toLocal();
+    poopooBirthday = new DateTime(
+      2019,
+      9,
+      2,
+    );
+    tuesday = poopooBirthday.toUtc().add(new Duration(days: 1)).toLocal();
+    wednesday = poopooBirthday.toUtc().add(new Duration(days: 2)).toLocal();
+    thursday = poopooBirthday.toUtc().add(new Duration(days: 3)).toLocal();
+    friday = poopooBirthday.toUtc().add(new Duration(days: 4)).toLocal();
   }
 
   String _minuteOfDayToHourMinuteString(int minuteOfDay) {
@@ -70,9 +75,9 @@ class _DayViewExampleState extends State<DayViewExample> {
 
   List<StartDurationItem> _getEventsOfDay(DateTime day) {
     List<Event> events;
-    if (day.year == _day0.year &&
-        day.month == _day0.month &&
-        day.day == _day0.day) {
+    if (day.year == poopooBirthday.year &&
+        day.month == poopooBirthday.month &&
+        day.day == poopooBirthday.day) {
       events = eventsOfDay0;
     } else {
       events = eventsOfDay1;
@@ -103,8 +108,11 @@ class _DayViewExampleState extends State<DayViewExample> {
       body: new DayViewEssentials(
         properties: new DayViewProperties(
           days: <DateTime>[
-            _day0,
-            _day1,
+            poopooBirthday,
+            tuesday,
+            wednesday,
+            thursday,
+            friday
           ],
         ),
         child: new Column(
@@ -115,6 +123,15 @@ class _DayViewExampleState extends State<DayViewExample> {
                 headerItemBuilder: _headerItemBuilder,
               ),
             ),
+            //color: Color.fromRGBO(166, 212, 229, 1),
+//            Row(
+//              children: <Widget>[
+//                Container(child: Text('월')),
+//                Container(child: Text('월')),
+//                Container(child: Text('월')),
+//                Container(child: Text('월'))
+//              ],
+//            ),
             new Expanded(
               child: new SingleChildScrollView(
                 child: new DayViewSchedule(
@@ -144,38 +161,16 @@ class _DayViewExampleState extends State<DayViewExample> {
     );
   }
 
+  ///요일을 나타내는 부분
   Widget _headerItemBuilder(BuildContext context, DateTime day) {
     return new Container(
-      color: Colors.grey[300],
+      color: Color.fromRGBO(166, 212, 229, 1),
       padding: new EdgeInsets.symmetric(vertical: 4.0),
-      child: new Column(
-        children: <Widget>[
-          weekdayToAbbreviatedString(day.weekday) == 'Sat'
-              ? new Text("토요일")
-              : Container(),
-          weekdayToAbbreviatedString(day.weekday) == 'Sat'
-              ? new Text("토요일")
-              : Container(),
-          weekdayToAbbreviatedString(day.weekday) == 'Sat'
-              ? new Text("토요일")
-              : Container(),
-          weekdayToAbbreviatedString(day.weekday) == 'Sat'
-              ? new Text("토요일")
-              : Container(),
-          weekdayToAbbreviatedString(day.weekday) == 'Sun'
-              ? new Text("일요일")
-              : Container(),
-
-//
-//            "${weekdayToAbbreviatedString(day.weekday)}",
-//            style: new TextStyle(fontWeight: FontWeight.bold),
-          //),
-          // new Text("${day.day}"),
-        ],
-      ),
+      child: Center(child: new Text(weekdayToAbbreviatedString(day.weekday))),
     );
   }
 
+  ///시간을 나타내는 부분
   Positioned _generatedTimeIndicatorBuilder(
     BuildContext context,
     ItemPosition itemPosition,
@@ -188,6 +183,7 @@ class _DayViewExampleState extends State<DayViewExample> {
       width: itemSize.width,
       height: itemSize.height,
       child: new Container(
+        height: itemSize.height / 2,
         child: new Center(
           child: new Text(_minuteOfDayToHourMinuteString(minuteOfDay)),
         ),
@@ -195,6 +191,7 @@ class _DayViewExampleState extends State<DayViewExample> {
     );
   }
 
+  ///시간표 빨간색 라인
   Positioned _generatedSupportLineBuilder(
     BuildContext context,
     ItemPosition itemPosition,
@@ -206,12 +203,13 @@ class _DayViewExampleState extends State<DayViewExample> {
       left: itemPosition.left,
       width: itemWidth,
       child: new Container(
-        height: 0.7,
-        color: Colors.grey[700],
+        height: 1.5,
+        color: Colors.red[700],
       ),
     );
   }
 
+  ///시간표 파란색 라인
   Positioned _generatedDaySeparatorBuilder(
     BuildContext context,
     ItemPosition itemPosition,
@@ -225,8 +223,8 @@ class _DayViewExampleState extends State<DayViewExample> {
       height: itemSize.height,
       child: new Center(
         child: new Container(
-          width: 0.7,
-          color: Colors.grey,
+          width: 1.5,
+          color: Colors.blue,
         ),
       ),
     );
@@ -244,10 +242,15 @@ class _DayViewExampleState extends State<DayViewExample> {
       width: itemSize.width,
       height: itemSize.height,
       child: new Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.green), color: Colors.white),
         margin: new EdgeInsets.only(left: 1.0, right: 1.0, bottom: 1.0),
         padding: new EdgeInsets.all(3.0),
-        color: Colors.green[200],
-        child: new Text("${event.title}"),
+        //color: Colors.white,
+        child: new Text(
+          "${event.title}",
+          style: TextStyle(color: Colors.green),
+        ),
       ),
     );
   }
