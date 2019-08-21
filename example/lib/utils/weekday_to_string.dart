@@ -1,19 +1,19 @@
 String weekdayToString(int weekday) {
   switch (weekday) {
     case DateTime.monday:
-      return "Monday";
+      return "월요일";
     case DateTime.tuesday:
-      return "Tuesday";
+      return "화요일";
     case DateTime.wednesday:
-      return "Wednesday";
+      return "수요일";
     case DateTime.thursday:
-      return "Thursday";
+      return "목요일";
     case DateTime.friday:
       return "Friday";
     case DateTime.saturday:
-      return "Saturday";
+      return "금요일";
     case DateTime.sunday:
-      return "Sunday";
+      return "토요일";
     default:
       return "Error";
   }
@@ -22,19 +22,19 @@ String weekdayToString(int weekday) {
 String weekdayToAbbreviatedString(int weekday) {
   switch (weekday) {
     case DateTime.monday:
-      return "Mon";
+      return "월";
     case DateTime.tuesday:
-      return "Tue";
+      return "화";
     case DateTime.wednesday:
-      return "Wed";
+      return "수";
     case DateTime.thursday:
-      return "Thu";
+      return "목";
     case DateTime.friday:
-      return "Fri";
+      return "금";
     case DateTime.saturday:
-      return "Sat";
+      return "토";
     case DateTime.sunday:
-      return "Sun";
+      return "일";
     default:
       return "Err";
   }
