@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-
 import 'package:calendar_views/day_view.dart';
 import 'package:calendar_views/src/_internal_date_time/all.dart';
+import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 /// Signature for a function that builds a generated time indicator.
 typedef Positioned GeneratedTimeIndicatorBuilder(
@@ -35,7 +34,7 @@ class TimeIndicationComponent implements ScheduleComponent {
   /// (Center of the item will be at the position of minute of day that the item represents)
   TimeIndicationComponent.intervalGenerated({
     this.minuteOfDayOfFirstTimeIndicator = 0,
-    this.timeIndicatorDuration = 60,
+    this.timeIndicatorDuration = 30,
     @required this.generatedTimeIndicatorBuilder,
   })  : assert(minuteOfDayOfFirstTimeIndicator != null &&
             isMinuteOfDayValid(minuteOfDayOfFirstTimeIndicator)),

@@ -50,6 +50,7 @@ class _DayViewExampleState extends State<DayViewExample> {
   DateTime wednesday;
   DateTime thursday;
   DateTime friday;
+  double paddingTop = 30;
 
   @override
   void initState() {
@@ -168,7 +169,7 @@ class _DayViewExampleState extends State<DayViewExample> {
     int minuteOfDay,
   ) {
     return new Positioned(
-      top: itemPosition.top,
+      top: itemPosition.top - paddingTop / 2,
       left: itemPosition.left,
       width: itemSize.width,
       height: itemSize.height,
@@ -187,7 +188,7 @@ class _DayViewExampleState extends State<DayViewExample> {
     int minuteOfDay,
   ) {
     return new Positioned(
-      top: itemPosition.top - 30,
+      top: itemPosition.top - paddingTop,
       left: itemPosition.left,
       width: itemWidth,
       child: new Container(
@@ -205,7 +206,7 @@ class _DayViewExampleState extends State<DayViewExample> {
     int daySeparatorNumber,
   ) {
     return new Positioned(
-      top: itemPosition.top - 30,
+      top: itemPosition.top - paddingTop,
       left: itemPosition.left,
       width: itemSize.width,
       height: itemSize.height,
@@ -225,7 +226,7 @@ class _DayViewExampleState extends State<DayViewExample> {
     Event event,
   ) {
     return new Positioned(
-      top: itemPosition.top - 30,
+      top: itemPosition.top - paddingTop,
       left: itemPosition.left,
       width: itemSize.width + 1,
       height: itemSize.height + 1,
