@@ -1,7 +1,6 @@
+import 'package:calendar_views/day_view.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
-import 'package:calendar_views/day_view.dart';
 
 import 'utils/all.dart';
 
@@ -123,15 +122,6 @@ class _DayViewExampleState extends State<DayViewExample> {
                 headerItemBuilder: _headerItemBuilder,
               ),
             ),
-            //color: Color.fromRGBO(166, 212, 229, 1),
-//            Row(
-//              children: <Widget>[
-//                Container(child: Text('월')),
-//                Container(child: Text('월')),
-//                Container(child: Text('월')),
-//                Container(child: Text('월'))
-//              ],
-//            ),
             new Expanded(
               child: new SingleChildScrollView(
                 child: new DayViewSchedule(
@@ -184,9 +174,7 @@ class _DayViewExampleState extends State<DayViewExample> {
       height: itemSize.height,
       child: new Container(
         height: itemSize.height / 2,
-        child: new Center(
-          child: new Text(_minuteOfDayToHourMinuteString(minuteOfDay)),
-        ),
+        child: new Text(_minuteOfDayToHourMinuteString(minuteOfDay)),
       ),
     );
   }
@@ -199,12 +187,12 @@ class _DayViewExampleState extends State<DayViewExample> {
     int minuteOfDay,
   ) {
     return new Positioned(
-      top: itemPosition.top,
+      top: itemPosition.top - 30,
       left: itemPosition.left,
       width: itemWidth,
       child: new Container(
         height: 1.5,
-        color: Colors.red[700],
+        color: Color(0xffEEEEEE),
       ),
     );
   }
@@ -217,14 +205,14 @@ class _DayViewExampleState extends State<DayViewExample> {
     int daySeparatorNumber,
   ) {
     return new Positioned(
-      top: itemPosition.top,
+      top: itemPosition.top - 30,
       left: itemPosition.left,
       width: itemSize.width,
       height: itemSize.height,
       child: new Center(
         child: new Container(
           width: 1.5,
-          color: Colors.blue,
+          color: Color(0xffEEEEEE),
         ),
       ),
     );
@@ -237,19 +225,18 @@ class _DayViewExampleState extends State<DayViewExample> {
     Event event,
   ) {
     return new Positioned(
-      top: itemPosition.top,
+      top: itemPosition.top - 30,
       left: itemPosition.left,
-      width: itemSize.width,
-      height: itemSize.height,
+      width: itemSize.width + 1,
+      height: itemSize.height + 1,
       child: new Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.green), color: Colors.white),
-        margin: new EdgeInsets.only(left: 1.0, right: 1.0, bottom: 1.0),
         padding: new EdgeInsets.all(3.0),
         //color: Colors.white,
         child: new Text(
           "${event.title}",
-          style: TextStyle(color: Colors.green),
+          style: TextStyle(color: Color(0xff97E074)),
         ),
       ),
     );

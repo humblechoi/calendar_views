@@ -1,7 +1,6 @@
+import 'package:calendar_views/day_view.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
-import 'package:calendar_views/day_view.dart';
 
 /// Widget that builds a child in place of each day in a day view.
 class DayViewDaysHeader extends StatefulWidget {
@@ -23,6 +22,8 @@ class _DayViewDaysHeaderState extends State<DayViewDaysHeader> {
       _dayViewEssentials.horizontalPositioner;
 
   DayViewProperties get _dayViewProperties => _horizontalPositioner.properties;
+
+  double columnTitleHeight = 30;
 
   @override
   void didChangeDependencies() {
@@ -60,7 +61,7 @@ This widget must be a decendant of DayViewEssentials.
 
     return new Container(
       width: _horizontalPositioner.totalWidth,
-      height: 40,
+      height: columnTitleHeight,
       child: new IntrinsicHeight(
         child: new Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,

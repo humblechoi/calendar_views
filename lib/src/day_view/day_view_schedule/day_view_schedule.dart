@@ -1,18 +1,13 @@
+import 'package:calendar_views/day_view.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
-import 'package:calendar_views/day_view.dart';
 
 /// Widget for display a day view schedule with the given [components].
 class DayViewSchedule extends StatefulWidget {
   DayViewSchedule({
     this.heightPerMinute,
-    this.topExtensionHeight = 16.0,
-    this.bottomExtensionHeight = 16.0,
     @required this.components,
   })  : assert(heightPerMinute == null || heightPerMinute > 0.0),
-        assert(topExtensionHeight != null && topExtensionHeight >= 0.0),
-        assert(bottomExtensionHeight != null && bottomExtensionHeight >= 0.0),
         assert(components != null);
 
   /// Height that a minute inside a [DayViewSchedule] will take.
@@ -21,10 +16,10 @@ class DayViewSchedule extends StatefulWidget {
   final double heightPerMinute;
 
   /// Height of extension above minimum minute of day.
-  final double topExtensionHeight;
+  final double topExtensionHeight = 30;
 
   /// Height of extension below maximum minute of day.
-  final double bottomExtensionHeight;
+  final double bottomExtensionHeight = 30;
 
   /// List of components that will be displayed inside this widget.
   ///
@@ -91,8 +86,6 @@ Eather heightPerMinute must be provider or this widget placed as a child of a wi
     return new SchedulePositioner(
       horizontalPositioner: _horizontalPositioner,
       heightPerMinute: heightPerMinute,
-      topExtensionHeight: widget.topExtensionHeight,
-      bottomExtensionHeight: widget.bottomExtensionHeight,
     );
   }
 
