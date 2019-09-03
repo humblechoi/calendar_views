@@ -29,11 +29,6 @@ List<Event> eventsOfDay0 = <Event>[
 List<Event> eventsOfDay1 = <Event>[
   new Event(startMinuteOfDay: 1 * 60, duration: 90, title: "Sleep Walking"),
   new Event(startMinuteOfDay: 7 * 60, duration: 60, title: "Drive To Work"),
-  new Event(startMinuteOfDay: 8 * 60, duration: 20, title: "A"),
-  new Event(startMinuteOfDay: 8 * 60, duration: 30, title: "B"),
-  new Event(startMinuteOfDay: 8 * 60, duration: 60, title: "C"),
-  new Event(startMinuteOfDay: 8 * 60 + 10, duration: 20, title: "D"),
-  new Event(startMinuteOfDay: 8 * 60 + 30, duration: 30, title: "E"),
   new Event(startMinuteOfDay: 23 * 60, duration: 60, title: "Midnight Snack"),
 ];
 
@@ -122,6 +117,7 @@ class _DayViewExampleState extends State<DayViewExample> {
             ),
             new Expanded(
               child: new SingleChildScrollView(
+                physics: ClampingScrollPhysics(),
                 child: new DayViewSchedule(
                   heightPerMinute: 1.0,
                   components: <ScheduleComponent>[
@@ -152,9 +148,12 @@ class _DayViewExampleState extends State<DayViewExample> {
   ///요일을 나타내는 부분
   Widget _headerItemBuilder(BuildContext context, DateTime day) {
     return new Container(
-      color: Colors.white,
       padding: new EdgeInsets.symmetric(vertical: 4.0),
-      child: Center(child: new Text(weekdayToAbbreviatedString(day.weekday))),
+      child: Center(
+          child: new Text(
+        weekdayToAbbreviatedString(day.weekday),
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+      )),
     );
   }
 
@@ -171,30 +170,36 @@ class _DayViewExampleState extends State<DayViewExample> {
       width: itemSize.width,
       height: itemSize.height,
       child: new Container(
-        padding: EdgeInsets.only(left: 3),
-        alignment: Alignment.centerLeft,
+        alignment: Alignment.center,
         height: itemSize.height / 2,
-        child: new Text(_minuteOfDayToHourMinuteString(minuteOfDay)),
+        child: new Text(
+          _minuteOfDayToHourMinuteString(minuteOfDay),
+          style: (TextStyle(color: Color(0xff3D3D3D), fontSize: 13)),
+        ),
       ),
     );
   }
 
   ///시간표 가로 라인
-  Positioned _generatedSupportLineBuilder(
-    BuildContext context,
-    ItemPosition itemPosition,
-    double itemWidth,
-    int minuteOfDay,
-  ) {
-    return new Positioned(
-      top: itemPosition.top - paddingTop,
-      left: itemPosition.left,
-      width: itemWidth,
-      child: new Container(
-        height: 1.5,
-        color: Colors.black,
-      ),
-    );
+  Positioned _generatedSupportLineBuilder(BuildContext context,
+      ItemPosition itemPosition, double itemWidth, int minuteOfDay, int index) {
+    return index == 16
+        ? Positioned(
+            child: Container(
+              width: 0.0,
+              height: 0.0,
+              color: Colors.red,
+            ),
+          )
+        : Positioned(
+            top: itemPosition.top - paddingTop,
+            left: itemPosition.left,
+            width: itemWidth,
+            height: index % 2 == 0 ? 1.5 : 1.0,
+            child: Container(
+              color: index % 2 == 0 ? Color(0xffC9C9C9) : Color(0xffE3E3E3),
+            ),
+          );
   }
 
   ///시간표 세로 라인
@@ -207,12 +212,26 @@ class _DayViewExampleState extends State<DayViewExample> {
     return new Positioned(
       top: itemPosition.top - paddingTop,
       left: itemPosition.left,
-      width: itemSize.width,
+      width: 1.5,
       height: itemSize.height + paddingTop * 2,
       child: new Center(
         child: new Container(
-          width: 1.5,
-          color: Colors.black,
+          decoration: BoxDecoration(
+            color: Color(0xffC9C9C9),
+            boxShadow: daySeparatorNumber == 0
+                ? [
+                    BoxShadow(
+                      color: Color(0xffE3E3E3),
+                      blurRadius: 5.0,
+                      spreadRadius: 1.0,
+                      offset: Offset(
+                        5.0,
+                        0.0,
+                      ),
+                    )
+                  ]
+                : [],
+          ),
         ),
       ),
     );
@@ -231,8 +250,8 @@ class _DayViewExampleState extends State<DayViewExample> {
       height: itemSize.height + 1,
       child: new Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.green), color: Colors.white),
-        padding: new EdgeInsets.all(3.0),
+            border: Border.all(color: Colors.transparent),
+            color: Colors.transparent),
         //color: Colors.white,
         child: new Text(
           "${event.title}",

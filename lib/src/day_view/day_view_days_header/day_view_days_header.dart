@@ -60,8 +60,22 @@ This widget must be a decendant of DayViewEssentials.
     );
 
     return new Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xffE3E3E3),
+            blurRadius: 3.0, // has the effect of softening the shadow
+            spreadRadius: 1.0, // has the effect of extending the shadow
+            offset: Offset(
+              0.0, // horizontal, move right 10
+              4.0, // vertical, move down 10
+            ),
+          )
+        ],
+        color: Color(0xff99CBDF),
+      ),
       width: _horizontalPositioner.totalWidth,
-      height: columnTitleHeight,
+      height: columnTitleHeight + 5,
       child: new IntrinsicHeight(
         child: new Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -84,11 +98,11 @@ This widget must be a decendant of DayViewEssentials.
 
     List<DateTime> days = _dayViewProperties.days;
 
-    daysAndSeparations.add(
-      _buildDaySeparation(
-        daySeparationNumber: 1,
-      ),
-    );
+//    daysAndSeparations.add(
+//      _buildDaySeparation(
+//        daySeparationNumber: 1,
+//      ),
+//    );
 
     for (int dayNumber = 0; dayNumber < days.length; dayNumber++) {
       DateTime day = days[dayNumber];
@@ -100,16 +114,16 @@ This widget must be a decendant of DayViewEssentials.
         ),
       );
 
-      if (_horizontalPositioner.isDaySeparationRightOfDay(dayNumber)) {
-        int daySeparationNumber =
-            _horizontalPositioner.daySeparationNumberRightOfDay(dayNumber);
-
-        daysAndSeparations.add(
-          _buildDaySeparation(
-            daySeparationNumber: daySeparationNumber,
-          ),
-        );
-      }
+//      if (_horizontalPositioner.isDaySeparationRightOfDay(dayNumber)) {
+//        int daySeparationNumber =
+//            _horizontalPositioner.daySeparationNumberRightOfDay(dayNumber);
+//
+//        daysAndSeparations.add(
+//          _buildDaySeparation(
+//            daySeparationNumber: daySeparationNumber,
+//          ),
+//        );
+//      }
     }
 
     return daysAndSeparations;
@@ -120,7 +134,7 @@ This widget must be a decendant of DayViewEssentials.
     @required DateTime day,
   }) {
     return new Container(
-      width: _horizontalPositioner.dayAreaWidth(dayNumber),
+      width: _horizontalPositioner.dayAreaWidth(dayNumber) + 1,
       child: widget.headerItemBuilder(context, day),
     );
   }

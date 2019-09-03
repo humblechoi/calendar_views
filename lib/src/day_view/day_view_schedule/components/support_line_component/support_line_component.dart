@@ -9,6 +9,7 @@ typedef Positioned GeneratedSupportLineBuilder(
   ItemPosition itemPosition,
   double itemWidth,
   int minuteOfDay,
+  int index,
 );
 
 /// [ScheduleComponent] for displaying support lines in the [DayViewArea.mainArea] of [DayViewSchedule].
@@ -83,26 +84,22 @@ class SupportLineComponent implements ScheduleComponent {
 
   bool get _shouldGenerateSupportLines => supportLines == null;
 
-  ItemPosition _makeItemPosition({
-    @required SchedulePositioner positioner,
-    @required int minuteOfDay,
-  }) {
+  ItemPosition _makeItemPosition(
+      {@required SchedulePositioner positioner, @required int minuteOfDay}) {
     double left;
     if (extendOverStartMainArea) {
-      left = positioner.startMainAreaLeft;
+      left = positioner.startMainAreaLeft + 1;
     } else {
       left = positioner.startMainAreaRight;
     }
 
     return new ItemPosition(
       top: positioner.minuteOfDayFromTop(minuteOfDay),
-      left: left - 50,
+      left: left,
     );
   }
 
-  double _calculateItemWidth({
-    @required SchedulePositioner positioner,
-  }) {
+  double _calculateItemWidth({@required SchedulePositioner positioner}) {
     double width = positioner.contentAreaWidth;
     if (!extendOverStartMainArea) {
       width -= positioner.startMainAreaWidth;
@@ -142,21 +139,17 @@ class SupportLineComponent implements ScheduleComponent {
     for (int minuteOfDay = minuteOfDayOfFirstSupportLine;
         minuteOfDay <= maximum_minute_of_day;
         minuteOfDay += interval) {
-      ItemPosition itemPosition = _makeItemPosition(
-        positioner: positioner,
-        minuteOfDay: minuteOfDay,
-      );
+      ItemPosition itemPosition =
+          _makeItemPosition(positioner: positioner, minuteOfDay: minuteOfDay);
 
-      double itemWidth = _calculateItemWidth(
-        positioner: positioner,
-      );
-
+      double itemWidth = _calculateItemWidth(positioner: positioner);
       Positioned item = generatedSupportLineBuilder(
-        context,
-        itemPosition,
-        itemWidth,
-        minuteOfDay,
-      );
+          context,
+          itemPosition,
+          itemWidth,
+          minuteOfDay,
+          maximum_minute_of_day ~/ interval -
+              (maximum_minute_of_day - minuteOfDay) ~/ interval);
 
       items.add(item);
     }

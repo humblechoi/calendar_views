@@ -22,19 +22,19 @@ String weekdayToString(int weekday) {
 String weekdayToAbbreviatedString(int weekday) {
   switch (weekday) {
     case DateTime.monday:
-      return "월";
+      return "MON";
     case DateTime.tuesday:
-      return "화";
+      return "TUE";
     case DateTime.wednesday:
-      return "수";
+      return "WED";
     case DateTime.thursday:
-      return "목";
+      return "THU";
     case DateTime.friday:
-      return "금";
+      return "FRI";
     case DateTime.saturday:
-      return "토";
+      return "SAT";
     case DateTime.sunday:
-      return "일";
+      return "SUN";
     default:
       return "Err";
   }
