@@ -58,16 +58,15 @@ class TimeIndicationComponent implements ScheduleComponent {
 
   bool get _shouldGenerateTimeIndicators => timeIndicators == null;
 
-  ItemPosition _makeItemPosition({
-    @required SchedulePositioner positioner,
-    @required int minuteOfDay,
-    @required int duration,
-  }) {
+  ItemPosition _makeItemPosition(
+      {@required SchedulePositioner positioner,
+      @required int minuteOfDay,
+      @required int duration}) {
     int halfDuration = duration ~/ 2;
     int adjustedMinuteOfDay = minuteOfDay - halfDuration;
 
     return new ItemPosition(
-      top: positioner.minuteOfDayFromTop(adjustedMinuteOfDay),
+      top: positioner.minuteOfDayFromTop(adjustedMinuteOfDay) - 12.5,
       left: positioner.timeIndicationAreaLeft,
     );
   }
@@ -111,10 +110,9 @@ class TimeIndicationComponent implements ScheduleComponent {
         minuteOfDay <= maximum_minute_of_day;
         minuteOfDay += timeIndicatorDuration) {
       ItemPosition itemPosition = _makeItemPosition(
-        positioner: positioner,
-        minuteOfDay: minuteOfDay,
-        duration: timeIndicatorDuration,
-      );
+          positioner: positioner,
+          minuteOfDay: minuteOfDay,
+          duration: timeIndicatorDuration);
 
       ItemSize itemSize = _makeItemSize(
         positioner: positioner,

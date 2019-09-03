@@ -44,6 +44,8 @@ class DayViewEssentialsState extends State<DayViewEssentials> {
   /// Positioner for day-view widgets.
   HorizontalPositioner get horizontalPositioner => _horizontalPositioner;
 
+  final double borderWidth = 1.0;
+
   void _throwExceptionIfInvalidBoxConstraints(BoxConstraints constraints) {
     if (constraints.maxWidth.isInfinite) {
       throw new FlutterError("""
@@ -73,18 +75,21 @@ This error probably happened because DayViewEssentials is child of an widget wit
               border: Border(
                   left: BorderSide(
                       color: Color(0xffB7B7B7),
-                      width: 1,
+                      width: borderWidth,
                       style: BorderStyle.solid),
                   right: BorderSide(
                       color: Color(0xffB7B7B7),
-                      width: 1,
+                      width: borderWidth,
                       style: BorderStyle.solid),
                   bottom: BorderSide(
                       color: Color(0xffB7B7B7),
-                      width: 1,
+                      width: borderWidth,
                       style: BorderStyle.solid)),
             ),
-            margin: EdgeInsets.all(_horizontalPositioner.outerPadding / 2 - 2),
+            margin: EdgeInsets.only(
+                left: _horizontalPositioner.outerPadding / 2 - borderWidth * 2,
+                right: _horizontalPositioner.outerPadding / 2 - borderWidth * 2,
+                top: 20),
             child: widget.child,
           ),
         );

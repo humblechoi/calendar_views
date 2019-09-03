@@ -25,7 +25,7 @@ class SchedulePositioner extends HorizontalPositioner {
   final double heightPerMinute;
 
   /// Height of the extension above the minimum minute of [DayViewSchedule].
-  final double topExtensionHeight = 30;
+  final double topExtensionHeight = 35;
 
   /// Height of the extension below the maximum minute of [DayViewSchedule].
   final double bottomExtensionHeight = 30;
@@ -38,7 +38,7 @@ class SchedulePositioner extends HorizontalPositioner {
   ///
   /// [duration] can be less than 0.
   double heightOfDuration(int duration) {
-    return heightPerMinute * duration;
+    return 1.5 * duration;
   }
 
   /// Distance from top of a given [minuteOfDay] inside a [DayViewSchedule].

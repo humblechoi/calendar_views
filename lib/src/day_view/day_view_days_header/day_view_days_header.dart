@@ -21,9 +21,9 @@ class _DayViewDaysHeaderState extends State<DayViewDaysHeader> {
   HorizontalPositioner get _horizontalPositioner =>
       _dayViewEssentials.horizontalPositioner;
 
-  DayViewProperties get _dayViewProperties => _horizontalPositioner.properties;
+  SchedulePositioner _schedulePositioner;
 
-  double columnTitleHeight = 30;
+  DayViewProperties get _dayViewProperties => _horizontalPositioner.properties;
 
   @override
   void didChangeDependencies() {
@@ -45,6 +45,9 @@ This widget must be a decendant of DayViewEssentials.
 
   @override
   Widget build(BuildContext context) {
+    _schedulePositioner = SchedulePositioner(
+        horizontalPositioner: _horizontalPositioner, heightPerMinute: 1);
+
     List<Widget> rowChildren = <Widget>[];
 
     rowChildren.add(
@@ -61,6 +64,7 @@ This widget must be a decendant of DayViewEssentials.
 
     return new Container(
       decoration: BoxDecoration(
+        color: Color(0xff99CBDF),
         boxShadow: [
           BoxShadow(
             color: Color(0xffE3E3E3),
@@ -72,10 +76,9 @@ This widget must be a decendant of DayViewEssentials.
             ),
           )
         ],
-        color: Color(0xff99CBDF),
       ),
       width: _horizontalPositioner.totalWidth,
-      height: columnTitleHeight + 5,
+      height: _schedulePositioner.topExtensionHeight,
       child: new IntrinsicHeight(
         child: new Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -86,7 +89,7 @@ This widget must be a decendant of DayViewEssentials.
   }
 
   Widget _buildStartingOffset() {
-    double width = _horizontalPositioner.eventAreaLeft - 1;
+    double width = _horizontalPositioner.eventAreaLeft;
 
     return new Container(
       width: width,

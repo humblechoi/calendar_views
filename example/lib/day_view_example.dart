@@ -21,15 +21,16 @@ class Event {
 List<Event> eventsOfDay0 = <Event>[
   new Event(startMinuteOfDay: 0, duration: 60, title: "Midnight Party"),
   new Event(startMinuteOfDay: 6 * 60, duration: 60, title: "Eat Breakfast"),
-  new Event(startMinuteOfDay: 7 * 60, duration: 60, title: "Get Dressed"),
+  new Event(
+      startMinuteOfDay: 8 * 60,
+      duration: 75,
+      title: "Computer Architecture and Organization(01)"),
+  new Event(
+      startMinuteOfDay: 10 * 60,
+      duration: 60,
+      title: "Computer Architecture and Organization(01)"),
   new Event(
       startMinuteOfDay: 18 * 60, duration: 60, title: "Take Dog For A Walk"),
-];
-
-List<Event> eventsOfDay1 = <Event>[
-  new Event(startMinuteOfDay: 1 * 60, duration: 90, title: "Sleep Walking"),
-  new Event(startMinuteOfDay: 7 * 60, duration: 60, title: "Drive To Work"),
-  new Event(startMinuteOfDay: 23 * 60, duration: 60, title: "Midnight Snack"),
 ];
 
 class DayViewExample extends StatefulWidget {
@@ -43,7 +44,7 @@ class _DayViewExampleState extends State<DayViewExample> {
   DateTime wednesday;
   DateTime thursday;
   DateTime friday;
-  double paddingTop = 30;
+  double paddingTop = 35;
 
   @override
   void initState() {
@@ -67,14 +68,7 @@ class _DayViewExampleState extends State<DayViewExample> {
   }
 
   List<StartDurationItem> _getEventsOfDay(DateTime day) {
-    List<Event> events;
-    if (day.year == poopooBirthday.year &&
-        day.month == poopooBirthday.month &&
-        day.day == poopooBirthday.day) {
-      events = eventsOfDay0;
-    } else {
-      events = eventsOfDay1;
-    }
+    List<Event> events = eventsOfDay0;
 
     return events
         .map(
@@ -98,6 +92,7 @@ class _DayViewExampleState extends State<DayViewExample> {
       appBar: new AppBar(
         title: new Text("DayView Example"),
       ),
+      backgroundColor: Colors.white,
       body: new DayViewEssentials(
         properties: new DayViewProperties(
           days: <DateTime>[
@@ -128,12 +123,12 @@ class _DayViewExampleState extends State<DayViewExample> {
                     new SupportLineComponent.intervalGenerated(
                       generatedSupportLineBuilder: _generatedSupportLineBuilder,
                     ),
+                    new EventViewComponent(
+                      getEventsOfDay: _getEventsOfDay,
+                    ),
                     new DaySeparationComponent(
                       generatedDaySeparatorBuilder:
                           _generatedDaySeparatorBuilder,
-                    ),
-                    new EventViewComponent(
-                      getEventsOfDay: _getEventsOfDay,
                     ),
                   ],
                 ),
@@ -148,7 +143,6 @@ class _DayViewExampleState extends State<DayViewExample> {
   ///요일을 나타내는 부분
   Widget _headerItemBuilder(BuildContext context, DateTime day) {
     return new Container(
-      padding: new EdgeInsets.symmetric(vertical: 4.0),
       child: Center(
           child: new Text(
         weekdayToAbbreviatedString(day.weekday),
@@ -165,13 +159,13 @@ class _DayViewExampleState extends State<DayViewExample> {
     int minuteOfDay,
   ) {
     return new Positioned(
-      top: itemPosition.top - paddingTop / 2,
+      top: itemPosition.top,
       left: itemPosition.left,
       width: itemSize.width,
       height: itemSize.height,
       child: new Container(
         alignment: Alignment.center,
-        height: itemSize.height / 2,
+        height: itemSize.height,
         child: new Text(
           _minuteOfDayToHourMinuteString(minuteOfDay),
           style: (TextStyle(color: Color(0xff3D3D3D), fontSize: 13)),
@@ -218,19 +212,6 @@ class _DayViewExampleState extends State<DayViewExample> {
         child: new Container(
           decoration: BoxDecoration(
             color: Color(0xffC9C9C9),
-            boxShadow: daySeparatorNumber == 0
-                ? [
-                    BoxShadow(
-                      color: Color(0xffE3E3E3),
-                      blurRadius: 5.0,
-                      spreadRadius: 1.0,
-                      offset: Offset(
-                        5.0,
-                        0.0,
-                      ),
-                    )
-                  ]
-                : [],
           ),
         ),
       ),
@@ -244,17 +225,17 @@ class _DayViewExampleState extends State<DayViewExample> {
     Event event,
   ) {
     return new Positioned(
-      top: itemPosition.top - paddingTop,
-      left: itemPosition.left,
-      width: itemSize.width + 1,
-      height: itemSize.height + 1,
+      top: itemPosition.top - paddingTop + 1,
+      left: itemPosition.left + 1,
+      width: itemSize.width,
+      height: itemSize.height - 2,
       child: new Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.transparent),
             color: Colors.transparent),
         //color: Colors.white,
         child: new Text(
-          "${event.title}",
+          '${event.title}',
           style: TextStyle(color: Color(0xff97E074)),
         ),
       ),
