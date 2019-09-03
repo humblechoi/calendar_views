@@ -88,7 +88,7 @@ class SupportLineComponent implements ScheduleComponent {
       {@required SchedulePositioner positioner, @required int minuteOfDay}) {
     double left;
     if (extendOverStartMainArea) {
-      left = positioner.startMainAreaLeft + 1;
+      left = positioner.startMainAreaLeft;
     } else {
       left = positioner.startMainAreaRight;
     }

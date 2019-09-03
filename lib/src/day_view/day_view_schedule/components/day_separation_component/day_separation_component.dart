@@ -43,7 +43,8 @@ class DaySeparationComponent implements ScheduleComponent {
 
     return new ItemPosition(
       top: top,
-      left: positioner.daySeparationAreaLeft(daySeparatorNumber) - 65,
+      left: positioner.daySeparationAreaLeft(daySeparatorNumber) -
+          positioner.timeIndicationAreaWidth,
     );
   }
 

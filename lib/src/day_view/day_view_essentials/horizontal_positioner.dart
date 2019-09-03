@@ -155,9 +155,11 @@ class HorizontalPositioner {
     }
   }
 
+  double get outerPadding => 20;
+
   // totalArea -----------------------------------------------------------------
 
-  double get totalAreaWidth => totalWidth;
+  double get totalAreaWidth => totalWidth - outerPadding;
 
   double get totalAreaLeft => 0.0;
 

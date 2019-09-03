@@ -68,7 +68,25 @@ This error probably happened because DayViewEssentials is child of an widget wit
 
         return new _DayViewEssentialsInherited(
           dayViewEssentialsState: this,
-          child: widget.child,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                  left: BorderSide(
+                      color: Color(0xffB7B7B7),
+                      width: 1,
+                      style: BorderStyle.solid),
+                  right: BorderSide(
+                      color: Color(0xffB7B7B7),
+                      width: 1,
+                      style: BorderStyle.solid),
+                  bottom: BorderSide(
+                      color: Color(0xffB7B7B7),
+                      width: 1,
+                      style: BorderStyle.solid)),
+            ),
+            margin: EdgeInsets.all(_horizontalPositioner.outerPadding / 2 - 2),
+            child: widget.child,
+          ),
         );
       },
     );
