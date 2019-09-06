@@ -66,7 +66,7 @@ class TimeIndicationComponent implements ScheduleComponent {
     int adjustedMinuteOfDay = minuteOfDay - halfDuration;
 
     return new ItemPosition(
-      top: positioner.minuteOfDayFromTop(adjustedMinuteOfDay) - 12.5,
+      top: positioner.minuteOfDayFromTop(adjustedMinuteOfDay) - 16.5,
       left: positioner.timeIndicationAreaLeft,
     );
   }

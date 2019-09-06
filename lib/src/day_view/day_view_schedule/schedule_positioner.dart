@@ -38,7 +38,7 @@ class SchedulePositioner extends HorizontalPositioner {
   ///
   /// [duration] can be less than 0.
   double heightOfDuration(int duration) {
-    return 1.5 * duration;
+    return 1.2 * duration;
   }
 
   /// Distance from top of a given [minuteOfDay] inside a [DayViewSchedule].
@@ -49,6 +49,7 @@ class SchedulePositioner extends HorizontalPositioner {
     r += heightOfDuration(
       _minutesFromMinimumMinute(minuteOfDay),
     );
+    print(heightOfDuration(_minutesFromMinimumMinute(minuteOfDay)));
     return r;
   }
 
