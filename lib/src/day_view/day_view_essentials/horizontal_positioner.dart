@@ -271,7 +271,7 @@ class HorizontalPositioner {
   double dayAreaRight(int dayNumber) {
     throwArgumentErrorIfInvalidDayNumber(dayNumber);
 
-    return dayAreaLeft(dayNumber) + _constantDayAreaWidth;
+    return dayAreaLeft(dayNumber);
   }
 
   // daySeparationArea ---------------------------------------------------------

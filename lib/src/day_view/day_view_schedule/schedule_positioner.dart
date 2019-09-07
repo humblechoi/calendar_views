@@ -49,7 +49,7 @@ class SchedulePositioner extends HorizontalPositioner {
     r += heightOfDuration(
       _minutesFromMinimumMinute(minuteOfDay),
     );
-    print(heightOfDuration(_minutesFromMinimumMinute(minuteOfDay)));
+//    print(heightOfDuration(_minutesFromMinimumMinute(minuteOfDay)));
     return r;
   }
 

@@ -6,7 +6,7 @@ class DayViewWidths {
   const DayViewWidths({
     this.totalAreaStartPadding = 0.0,
     this.totalAreaEndPadding = 0.0,
-    this.timeIndicationAreaWidth = 60.0, //TODO: 시간 영역 넓이
+    this.timeIndicationAreaWidth = 50.0, //TODO: 시간 영역 넓이
     this.separationAreaWidth = 0.0,
     this.mainAreaStartPadding = 0.0,
     this.mainAreaEndPadding = 0.0,
