@@ -4,12 +4,13 @@ import 'package:meta/meta.dart';
 
 /// Widget that builds a child in place of each day in a day view.
 class DayViewDaysHeader extends StatefulWidget {
-  DayViewDaysHeader({
-    @required this.headerItemBuilder,
-  }) : assert(headerItemBuilder != null);
+  DayViewDaysHeader(
+      {@required this.headerItemBuilder, this.headerColor = 0xff99CBDF})
+      : assert(headerItemBuilder != null);
 
   /// Function that builds a header item.
   final DayViewDaysHeaderItemBuilder headerItemBuilder;
+  final int headerColor;
 
   @override
   State createState() => new _DayViewDaysHeaderState();
@@ -64,7 +65,7 @@ This widget must be a decendant of DayViewEssentials.
 
     return new Container(
       decoration: BoxDecoration(
-        color: Color(0xff99CBDF),
+        color: Color(widget.headerColor),
         boxShadow: [
           BoxShadow(
             color: Color(0xffE3E3E3),
@@ -72,7 +73,7 @@ This widget must be a decendant of DayViewEssentials.
             spreadRadius: 1.0, // has the effect of extending the shadow
             offset: Offset(
               0.0, // horizontal, move right 10
-              4.0, // vertical, move down 10
+              0.0, // vertical, move down 10
             ),
           )
         ],
