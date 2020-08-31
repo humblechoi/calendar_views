@@ -108,7 +108,7 @@ class _DayViewExampleState extends State<DayViewExample> {
             new Container(
               child: new DayViewDaysHeader(
                 headerItemBuilder: _headerItemBuilder,
-                headerColor: 0xffaaaaaa,
+                headerColor: Colors.blue,
               ),
             ),
             new Expanded(
